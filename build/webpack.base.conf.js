@@ -8,12 +8,16 @@ function resolve(dir) {
     return path.join(__dirname, '..', dir);
 }
 
+// let entry = ['./ch1/basicEnv.js','./ch1/basicCube.js'];
+
 module.exports = {
     entry: {
-        app: './ch1/basicEnv.js'
+        app: './ch1/basicEnv.js',
+        app2: './ch1/basicCube.js'
     },
+    // entry: entry,
     output: {
-        filename: devMode ? 'js/index.[hash:8].js' : 'js/index.[chunkhash:8].js',
+        filename: devMode ? 'js/[name].[hash:8].js' : 'js/index.[chunkhash:8].js',
         path: path.resolve(__dirname, '../dist'),
         publicPath: '/'
     },
@@ -28,6 +32,16 @@ module.exports = {
             root: process.cwd()
         }),
         new HtmlWebpackPlugin({
+            chunks:['app'],
+            filename:'basicEnv.html',
+            hash: true,
+            title: 'Output Management',
+            template: './ch1/BasicEnv.html'
+        }),
+        new HtmlWebpackPlugin({
+            chunks:['app2'],
+            filename:'app2.html',
+            hash: true,
             title: 'Output Management',
             template: './ch1/BasicEnv.html'
         })
