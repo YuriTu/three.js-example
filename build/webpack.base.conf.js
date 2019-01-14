@@ -40,7 +40,7 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             chunks:['app2'],
-            filename:'app2.html',
+            filename:'BasicCube.html',
             hash: true,
             title: 'Output Management',
             template: './ch1/BasicEnv.html'

@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 
+
 let SCREEN_WIDTH = window.innerWidth,
     SCREEN_HEIGHT = window.innerHeight;
 
@@ -25,6 +26,9 @@ class Main {
 
 let main = new Main();
 main.start();
+
+
+// ---
 
 function initScene() {
     scene = new THREE.Scene();
