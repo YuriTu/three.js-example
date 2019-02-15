@@ -9,7 +9,20 @@ let renderer,camera, scene;
 class Main {
     constructor(){
         this.init = () => {
-            initScene();
+            this.initScene();
+        }
+
+        this.initScene = () => {
+            // 创建场景
+            scene = new THREE.Scene();
+            // 创建相机
+            camera = new THREE.PerspectiveCamera(45, SCREEN_WIDTH / SCREEN_HEIGHT, .1, 1000);
+            // 创建渲染器
+            renderer = new THREE.WebGLRenderer();
+            // 添加渲染器至dom
+            document.body.appendChild(renderer.domElement);
+
+            alert('success! Your browser supports WebGL.')
         }
 
         this.animate = () => {
@@ -17,31 +30,12 @@ class Main {
             renderer.render(scene,camera);
         }
 
+        // 初始化构建
         this.init();
-    }
-    start(){
+        // 动画启动与管理
         this.animate();
     }
 }
 
 let main = new Main();
-main.start();
 
-
-// ---
-
-function initScene() {
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(45, SCREEN_WIDTH / SCREEN_HEIGHT, .1, 1000);
-    camera.position.z = 1000;
-    camera.position.x = 10;
-    camera.position.y = 10;
-
-    renderer = new THREE.WebGLRenderer();
-    renderer.setSize(SCREEN_WIDTH,SCREEN_HEIGHT);
-    renderer.setPixelRatio( window.devicePixelRatio);
-    document.body.appendChild(renderer.domElement);
-    // axes
-    let axes = new THREE.AxesHelper(2000);
-    scene.add(axes);
-}
